@@ -39,7 +39,7 @@ if [[ "$HEAD_COMMIT" == "latest" ]]; then
   cd $STACKS_DIR && git pull && cd -
 else
   export GOT_HEAD="false"
-  cd $STACKS_DIR && git pull && git reset --hard "$HEAD_COMMIT" > /dev/null 2>&1  && cd - && export GOT_HEAD="true"
+  cd $STACKS_DIR && git fetch && git reset --hard "$HEAD_COMMIT" > /dev/null 2>&1  && cd - && export GOT_HEAD="true"
   echo "$HEAD"
   if [[ "$GOT_HEAD" == "false" ]]; then
     echo "Error: The given sha-commit is invalid."
