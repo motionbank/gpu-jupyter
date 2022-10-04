@@ -7,7 +7,7 @@
 
 # Use NVIDIA CUDA as base image and run the same installation as in the other packages.
 # The version of cudatoolkit must match those of the base image, see Dockerfile.pytorch
-FROM nvidia/cuda:11.6.2-cudnn8-devel-ubuntu20.04
+FROM nvidia/cuda:11.7.1-cudnn8-devel-ubuntu20.04
 LABEL authors="Christoph Schranz <christoph.schranz@salzburgresearch.at>, Mathematical Michael <consistentbayes@gmail.com>"
 # This is a concatenated Dockerfile, the maintainers of subsequent sections may vary.
 RUN chmod 1777 /tmp && chmod 1777 /var/tmp
@@ -430,7 +430,7 @@ LABEL maintainer="Christoph Schranz <christoph.schranz@salzburgresearch.at>"
 # https://www.tensorflow.org/install/source#gpu
 # installation via conda leads to errors in version 4.8.2
 RUN pip install --upgrade pip && \
-    pip install --no-cache-dir "tensorflow==2.6.2" && \
+    pip install --no-cache-dir "tensorflow==2.10.0" && \
     pip install --no-cache-dir keras
 
 # Install PyTorch with dependencies
