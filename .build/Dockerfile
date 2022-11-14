@@ -335,7 +335,7 @@ USER root
 
 # Install nvtop to monitor the gpu tasks
 RUN apt-get update && \
-    apt-get install -y cmake libncurses5-dev libncursesw5-dev libudev-dev libsystemd-dev git && \
+    apt-get install -y cmake libncurses5-dev libncursesw5-dev libudev-dev libsystemd-dev libdrm-dev pkg-config git && \
     rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/Syllo/nvtop.git /run/nvtop && \
