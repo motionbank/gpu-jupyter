@@ -25,10 +25,9 @@ USER root
 # Install nvtop to monitor the gpu tasks
 RUN apt-get update && \
     apt-get install -y cmake libncurses5-dev libncursesw5-dev libudev-dev libsystemd-dev libdrm-dev pkg-config git && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN git clone https://github.com/Syllo/nvtop.git /run/nvtop && \
-    mkdir -p /run/nvtop/build && cd /run/nvtop/build && \
+    rm -rf /var/lib/apt/lists/* && \
+    git clone https://github.com/Syllo/nvtop.git /tmp/nvtop && \
+    mkdir -p /tmp/nvtop/build && cd /tmp/nvtop/build && \
     (cmake .. -DNVML_RETRIEVE_HEADER_ONLINE=True 2> /dev/null || echo "cmake was not successful") && \
     (make 2> /dev/null || echo "make was not successful") && \
     (make install 2> /dev/null || echo "make install was not successful") && \
