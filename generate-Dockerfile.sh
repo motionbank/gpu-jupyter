@@ -66,6 +66,7 @@ echo "
 #################### Dependency: jupyter/base-image ########################
 ############################################################################
 " >> $DOCKERFILE
+cat $STACKS_DIR/docker-stacks-foundation/Dockerfile | grep -v 'BASE_CONTAINER' | grep -v 'FROM $ROOT_CONTAINER' >> $DOCKERFILE
 cat $STACKS_DIR/base-notebook/Dockerfile | grep -v 'BASE_CONTAINER' | grep -v 'FROM $ROOT_CONTAINER' >> $DOCKERFILE
 
 # copy files that are used during the build:
