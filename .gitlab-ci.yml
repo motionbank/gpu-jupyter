@@ -2,7 +2,7 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
 
 build-python-only:
-  image: ubuntu:20
+  image: ubuntu:20.04
   stage: build
   script:
     - $CI_PROJECT_DIR/generate-Dockerfile.sh --python-only
