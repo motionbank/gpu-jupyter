@@ -4,6 +4,8 @@ variables:
 build-python-only:
   image: ubuntu:20.04
   stage: build
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq git
   script:
     - $CI_PROJECT_DIR/generate-Dockerfile.sh --python-only
   artifacts:
