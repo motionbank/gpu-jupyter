@@ -73,6 +73,7 @@ cat $STACKS_DIR/base-notebook/Dockerfile | grep -v 'BASE_CONTAINER' | grep -v 'F
 cp $STACKS_DIR/base-notebook/jupyter_server_config.py .build/
 cp $STACKS_DIR/docker-stacks-foundation/fix-permissions .build/
 cp $STACKS_DIR/docker-stacks-foundation/start.sh .build/
+cp $STACKS_DIR/docker-stacks-foundation/initial-condarc .build/
 cp $STACKS_DIR/base-notebook/start-notebook.sh .build/
 cp $STACKS_DIR/base-notebook/start-singleuser.sh .build/
 chmod 755 .build/*
