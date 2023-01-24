@@ -76,6 +76,7 @@ cp $STACKS_DIR/docker-stacks-foundation/start.sh .build/
 cp $STACKS_DIR/docker-stacks-foundation/initial-condarc .build/
 cp $STACKS_DIR/base-notebook/start-notebook.sh .build/
 cp $STACKS_DIR/base-notebook/start-singleuser.sh .build/
+cp $STACKS_DIR/minimal-notebook/Rprofile.site .build/
 chmod 755 .build/*
 
 echo "
