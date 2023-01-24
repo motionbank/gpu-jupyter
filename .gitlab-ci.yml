@@ -1,4 +1,4 @@
-deploy:
+build-python-only:
   rules:
     - if: '$CI_COMMIT_BRANCH'
       when: always
@@ -7,6 +7,7 @@ deploy:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
   script:
+    - $CI_PROJECT_DIR/generate-Dockerfile.sh --python-only
     - mkdir -p /kaniko/.docker
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context $CI_PROJECT_DIR/.build --dockerfile $CI_PROJECT_DIR/.build/Dockerfile --destination $CI_REGISTRY/library/gpu-jupyter:$CI_COMMIT_BRANCH
+    - /kaniko/executor --context $CI_PROJECT_DIR/.build --dockerfile $CI_PROJECT_DIR/.build/Dockerfile --destination $CI_REGISTRY/library/gpu-jupyter:$CI_COMMIT_BRANCH-python-only
