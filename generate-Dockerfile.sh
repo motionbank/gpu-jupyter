@@ -63,21 +63,29 @@ cat src/Dockerfile.header >> $DOCKERFILE
 
 echo "
 ############################################################################
-#################### Dependency: jupyter/base-image ########################
+#################### Dependency: jupyter/docker-stacks-foundation ########################
 ############################################################################
 " >> $DOCKERFILE
 cat $STACKS_DIR/docker-stacks-foundation/Dockerfile | grep -v 'BASE_CONTAINER' | grep -v 'FROM $ROOT_CONTAINER' >> $DOCKERFILE
+
+# copy files that are used during the build:
+cp $STACKS_DIR/docker-stacks-foundation/fix-permissions .build/
+cp $STACKS_DIR/docker-stacks-foundation/start.sh .build/
+cp $STACKS_DIR/docker-stacks-foundation/initial-condarc .build/
+chmod 755 .build/*.sh
+
+echo "
+############################################################################
+#################### Dependency: jupyter/base-notebook ########################
+############################################################################
+" >> $DOCKERFILE
 cat $STACKS_DIR/base-notebook/Dockerfile | grep -v 'BASE_CONTAINER' | grep -v 'FROM $ROOT_CONTAINER' >> $DOCKERFILE
 
 # copy files that are used during the build:
 cp $STACKS_DIR/base-notebook/jupyter_server_config.py .build/
-cp $STACKS_DIR/docker-stacks-foundation/fix-permissions .build/
-cp $STACKS_DIR/docker-stacks-foundation/start.sh .build/
-cp $STACKS_DIR/docker-stacks-foundation/initial-condarc .build/
 cp $STACKS_DIR/base-notebook/start-notebook.sh .build/
 cp $STACKS_DIR/base-notebook/start-singleuser.sh .build/
-cp $STACKS_DIR/minimal-notebook/Rprofile.site .build/
-chmod 755 .build/*
+chmod 755 .build/*.sh
 
 echo "
 ############################################################################
@@ -85,6 +93,9 @@ echo "
 ############################################################################
 " >> $DOCKERFILE
 cat $STACKS_DIR/minimal-notebook/Dockerfile | grep -v BASE_CONTAINER >> $DOCKERFILE
+
+# copy files that are used during the build:
+cp $STACKS_DIR/minimal-notebook/Rprofile.site .build/
 
 echo "
 ############################################################################
