@@ -197,6 +197,7 @@ on top of the `scipy-notebook`, but the packages within `src/Dockerfile.usefulpa
 * `--no-useful-packages`: On top of the `docker-stack` `datascience-notebook` (Julia and R), 
 the essential `gpulibs` are installed, but not the packages within `src/Dockerfile.usefulpackages`.
 
+* `-d|--devel`: Replaces the string `runtime-ubuntu` with `devel-ubuntu` in the base image's tag.
 
 ### Custom Installations
 
