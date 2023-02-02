@@ -108,6 +108,10 @@ if [[ "$no_datascience_notebook" != 1 ]]; then
   ################ Dependency: jupyter/datascience-notebook ##################
   ############################################################################
   " >> $DOCKERFILE
+  echo "
+# Add R mimetype option to specify how the plot returns from R to the browser
+COPY --chown=${NB_UID}:${NB_GID} Rprofile.site /opt/conda/lib/R/etc/
+  " >> $DOCKERFILE
   cat $STACKS_DIR/datascience-notebook/Dockerfile | grep -v BASE_CONTAINER >> $DOCKERFILE
 
   cp $STACKS_DIR/minimal-notebook/Rprofile.site .build/
