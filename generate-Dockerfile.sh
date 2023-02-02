@@ -92,10 +92,7 @@ echo "
 ################# Dependency: jupyter/minimal-notebook #####################
 ############################################################################
 " >> $DOCKERFILE
-cat $STACKS_DIR/minimal-notebook/Dockerfile | grep -v BASE_CONTAINER >> $DOCKERFILE
-
-# copy files that are used during the build:
-cp $STACKS_DIR/minimal-notebook/Rprofile.site .build/
+cat $STACKS_DIR/minimal-notebook/Dockerfile | grep -v BASE_CONTAINER | grep -v 'Rprofile' >> $DOCKERFILE
 
 echo "
 ############################################################################
@@ -112,6 +109,8 @@ if [[ "$no_datascience_notebook" != 1 ]]; then
   ############################################################################
   " >> $DOCKERFILE
   cat $STACKS_DIR/datascience-notebook/Dockerfile | grep -v BASE_CONTAINER >> $DOCKERFILE
+
+  cp $STACKS_DIR/minimal-notebook/Rprofile.site .build/
 else
   echo "Set 'no-datascience-notebook' = 'python-only', not installing the datascience-notebook with Julia and R."
 fi
